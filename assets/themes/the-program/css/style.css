@@ -729,6 +729,7 @@ pre {
   display: block;
   margin-left: auto;
   margin-left: auto;
+  float: right;
 }
 .unit-article img.left {
   margin-right: 16px;

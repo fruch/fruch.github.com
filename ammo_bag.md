@@ -4,6 +4,8 @@ title: "Python Ammunition Bag"
 description: "All the nice python package I used along the way"
 ---
 {% include JB/setup %}
+
+[![Ammo](/assets/img/ammo.jpg)](http://www.dailymail.co.uk/news/article-1361979/Libya-David-Cameron-retreat-anti-Gaddafi-rebels-dont-support-action-pledge.html)
 ## Intro ##
 All the nice python package I used/seen, and I need a place to write 
 them down, so I won't forget them.
