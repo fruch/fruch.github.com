@@ -791,6 +791,27 @@ pre {
 .unit-article .unit-foot .gotop {
   margin-bottom: 0;
 }
+.unit-article  .addthis_toolbox div {
+  margin: 0 6px 0 0;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  top: -2px;
+}
+.unit-article  .addthis_toolbox a {
+	border-bottom: 0px;
+}
+
+a.blog-title {
+    font-size: 20px;
+}
+.blog-post div {
+	padding: 5px 5px 25px 5px; 
+	border-bottom: 1px dashed #b1b1b1;
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
+
 /* post & page */
 .layout-page .tag_box {
   background: url('/assets/themes/the-program/skin/100-90-5-monochrome.png') repeat 0 0 #999999;
@@ -1482,3 +1503,4 @@ hr {
   *display: inline;
   float: right;
 }
+

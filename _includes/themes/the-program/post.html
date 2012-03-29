@@ -5,10 +5,19 @@
 				<div class="unit-head">
 					<div class="unit-inner unit-head-inner">
 						<h1 class="h2 entry-title">{{ page.title }}</h1>
+						<!-- AddThis Button BEGIN -->
+						<div class="addthis_toolbox addthis_default_style ">
+						<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+						<a class="addthis_button_tweet"></a>
+						<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+						<a class="addthis_counter addthis_pill_style"></a>
+						</div>
+						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f74709a2356acaa"></script>
+						<!-- AddThis Button END -->
 					</div><!-- unit-inner -->
 				</div><!-- unit-head -->
 			</header>
-
+			
 			<div class="bd">
 				<div class="entry-content">
 					{{ content }}
@@ -35,10 +44,12 @@
 				</div><!-- entry-content -->
 				<div class="misc-content">
 					<div class="social">
-						<ul class="list-linear">
+						<!--<ul class="list-linear">
 							<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{ site.author.twitter }}" data-lang="en">Tweet</a></div></li>
-							<li><div class="twitter-follow"><a href="https://twitter.com/{{ site.author.twitter }}" class="twitter-follow-button" data-show-count="false" data-lang="en"></a></div></li>
-						</ul>
+							<li><div class="twitter-follow"><a href="https://twitter.com/{{ site.author.twitter }}" class="twitter-follow-button" data-show-count="false" data-lang="en"></a></div></li>-->
+							
+							<!-- AddThis Button END -->
+						<!--</ul>-->
 					</div>
 					<div class="comment">
 					{% include JB/comments %}
