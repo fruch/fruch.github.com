@@ -725,6 +725,9 @@ pre {
   white-space: nowrap;
   background-color: #fff04a;
 }
+.unit-article ol, ul {
+	margin: 0 0 1.685em 2em;
+}
 .unit-article img {
   display: block;
   margin-left: auto;
