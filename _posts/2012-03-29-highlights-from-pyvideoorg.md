@@ -8,11 +8,11 @@ tags: [python, testing]
 {% include JB/setup %}
 
 Look like people were quite busy in the latest [US PyCon][1], 
-I need to promise myself to actully attand one in the next coming years.
+I need to promise myself to actually attend one in the next coming years.
 too bad there no such thing in IL, to only closest thing is the meetups of [PyWeb-IL][2] 
-(I want to attand one also..., even thought on trying to host one at my day job office)
+(I want to attend one also..., even thought on trying to host one at my day job office)
 
-So thanks to the people of [pyvideo.org][3], we could actully see what was going on.
+So thanks to the people of [pyvideo.org][3], we could actually see what was going on.
 
 [1]: https://us.pycon.org/2012/
 [2]: https://groups.google.com/forum/?fromgroups#!forum/pyweb-il

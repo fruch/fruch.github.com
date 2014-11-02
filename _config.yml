@@ -28,6 +28,8 @@ author :
 #
 production_url : http://fruch.github.com
 
+highlighter: rouge
+
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :

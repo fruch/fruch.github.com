@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ""
-description: "TheLinuxGameTome is dying, lets save it"
+title: "TheLinuxGameTome is dying, lets save it"
+description: ""
 category: Blog
 tags: [python,django]
 ---
