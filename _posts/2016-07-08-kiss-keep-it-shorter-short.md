@@ -37,15 +37,15 @@ First thought I hade was, the one wrote it is must be coming from C (or maybe Ja
 
 1. Input validation
 
+    I don't know what's print_error_exit() is doing exactly, let's assume it's raising expection (hopefully it's not calling os.exit())    
+    So assertion with the proper text would be alsmot identical.
+    
     Checking both for None, and for empty string is futile, just assert, like this:
     
     {% highlight python %}
         assert full_path_to_file, "parameter can't be empty"
         assert full_path_in_server, "parameter can't be empty"
     {% endhighlight %}
-    
-    I don't know what's print_error_exit() is doing exactly, let's assume it's raising expection (hopefully it's not calling os.exit())    
-    So assertion with the proper text would be alsmot identical.
 
 2. Using requests to stream file
 
