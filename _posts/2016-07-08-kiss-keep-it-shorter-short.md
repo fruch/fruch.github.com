@@ -12,6 +12,8 @@ and that was causing some of the server he worte/manged some troubles.
 
 Here's the code:
 
+{% highlight python %}
+
     def deploy_file(full_path_to_file, full_path_in_server):
         if full_path_to_file is None or full_path_in_server is None or full_path_to_file == "" or full_path_in_server == "":
             print_error_exit(" wrong input for deploy_file")
@@ -29,16 +31,19 @@ Here's the code:
         except Exception as ex:
             print (ex)
             print_error_exit ("Posting with url %s failed. status: %s" % (full_path_in_server, post_status))
+{% endhighlight %}
 
 First thought I hade was, the one wrote it is must be coming from C (or maybe Java), so let go over what's wrong here.
 
 1. Input validation
 
     Checking both for None, and for empty string is futile, just assert, like this:
+    {% highlight python %}
 
         assert full_path_to_file, "parameter can't be empty"
         assert full_path_in_server, "parameter can't be empty"
-
+        
+    {% endhighlight %}
     I don't know what's print_error_exit() is doing exactly, let's assume it's raising expection (hopefully it's not calling os.exit())    
     So assertion with the proper text would be alsmot identical.
 
@@ -52,6 +57,7 @@ First thought I hade was, the one wrote it is must be coming from C (or maybe Ja
     Lot of different error handling code, one for checking the http statuses and one for catching expections.
 
 ## My version
+{% highlight python %}
 
     def deploy_file(full_path_to_file, full_path_in_server):
         assert full_path_to_file, "parameter can't be empty"
@@ -77,5 +83,6 @@ First thought I hade was, the one wrote it is must be coming from C (or maybe Ja
             print_error_exit ("Deployment to %s failed. status_code = %s, returned_text = %s" % 
                 (full_path_in_server, res.status_code if res else None, res.text if res else None))
                 
+{% endhighlight %}
 
 [1]: http://docs.python-requests.org/en/master/user/advanced/#streaming-uploads
