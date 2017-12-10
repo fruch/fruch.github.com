@@ -55,7 +55,7 @@ but when used with complex formatter the output goes like that:
 Kinda, not really helpful:
 
 1. *confusing* - and you loose track of where this print came from really fast (keep in mind I'm talking about humongous json object)
-2. *filtering* is (almost) impossible (yeah, not without some extra regex kung-fu)
+1. *filtering* is (almost) impossible (yeah, not without some extra regex kung-fu)
 
 Skimmed through the logging documentations, google it a bit think someone already solved those things
 and I could copy paste, came out empty handed.
@@ -113,6 +113,7 @@ class MultiLineFormatter(logging.Formatter):
         return s
 
 # and two examples how to configure the root logger to use it
+
 import logging
 import logging.config
 
@@ -181,5 +182,4 @@ and now our output is much much clearer:
     ^14/11/06 00:54:51 !ERROR <t:MainThread T:root M:log.py F:<module> L:76 >   'data1': "how we love big dicts ? don't we ?,",
     ^14/11/06 00:54:51 !ERROR <t:MainThread T:root M:log.py F:<module> L:76 >   'data3': {'a': '???', 'b': 2, 'c': 3, 'd': '***'}}]
 
-
-*Disclaimer: use with caution, written past midnight :)*
+**Disclaimer: use with caution, written past midnight :)**

@@ -39,50 +39,51 @@ First thought I hade was, the one wrote it is must be coming from C (or maybe Ja
 
     I don't know what's print_error_exit() is doing exactly, let's assume it's raising expection (hopefully it's not calling os.exit())    
     So assertion with the proper text would be alsmot identical.
-    
+
     Checking both for None, and for empty string is futile, just assert, like this:
-    
+
     {% highlight python %}
         assert full_path_to_file, "parameter can't be empty"
         assert full_path_in_server, "parameter can't be empty"
     {% endhighlight %}
 
-2. Using requests to stream file
+1. Using requests to stream file
 
     Requests is cool, alsmot the defacto standard when HTTP client is need in python.
     it has very good documention, clearly someone didn't read it.[streaming uploads][1]
 
-3. Multiple error paths
+1. Multiple error paths
 
     Lot of different error handling code, one for checking the http statuses and one for catching expections.
 
-## My version
+# My version
+
 {% highlight python %}
 
     def deploy_file(full_path_to_file, full_path_in_server):
         assert full_path_to_file, "parameter can't be empty"
         assert full_path_in_server, "parameter can't be empty"
-        
+
         res = None
         try:
             with open(full_path_to_file, mode="rb") as f:
                 logging.info("Deploying...:  %s", full_path_in_server)
-                
+
                 res = requests.put(url= full_path_in_server, data=f)
-                
+
                 assert res.status_code in [200, 201, 202]
                 logging.info("Success:  %s", full_path_in_server)
-                
+
                 return {"uploaded": file_to_upload }
-               
+
         except Exception as ex:
             logging.expection("deploy_file faild") # so we'll have a nice print in the log
-            
+
             # casue I don't know what print_error_exit() does, we'll call it.
             # even that I would prefer to just raise the expection up, i.e. "raise ex"
             print_error_exit ("Deployment to %s failed. status_code = %s, returned_text = %s" % 
                 (full_path_in_server, res.status_code if res else None, res.text if res else None))
-                
+
 {% endhighlight %}
 
 [1]: http://docs.python-requests.org/en/master/user/advanced/#streaming-uploads

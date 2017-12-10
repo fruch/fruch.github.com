@@ -17,8 +17,8 @@ Really liked the tools he demonstrated, especially the mario like demo.
 
 BTW, his site is kinda of cool [http://worrydream.com/][2]
 and I quote from there:
-> "I designed the initial user interface concepts for iPad, iPod Nano, and half a 
-> dozen  experimental  hardware  platforms.  Initiated,  designed,  and  prototyped  over 
+> "I designed the initial user interface concepts for iPad, iPod Nano, and half a
+> dozen  experimental  hardware  platforms.  Initiated,  designed,  and  prototyped  over
 > seventy concept projects..."
 
 sound like a dream job.

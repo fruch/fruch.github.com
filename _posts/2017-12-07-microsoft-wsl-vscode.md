@@ -11,7 +11,7 @@ tags: [windows, linux, wsl, vscode, docker]
 
 I've took [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) for a spin today, and I'm impressed.
 
-```
+``` bash
 # doing something like this
 $ apt install docker.io
 ```
