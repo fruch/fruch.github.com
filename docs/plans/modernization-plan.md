@@ -34,9 +34,100 @@
 
 ---
 
-## 2. Version & Dependency Upgrades
+## 2. Static Site Generator Comparison
 
-### 2.1 Add a `Gemfile` for Reproducible Builds
+Before deciding on dependency upgrades, it is worth evaluating whether to stay with Jekyll or migrate to a different static site generator entirely. The table below compares modern options across Ruby, Python, Go, and JavaScript ecosystems.
+
+### 2.1 Full Comparison Table
+
+| Feature | [Jekyll](https://jekyllrb.com/) | [Hugo](https://gohugo.io/) | [Pelican](https://getpelican.com/) | [Nikola](https://getnikola.com/) | [MkDocs (Material)](https://squidfunk.github.io/mkdocs-material/) | [Lektor](https://www.getlektor.com/) | [Sphinx (Ablog)](https://ablog.readthedocs.io/) | [11ty (Eleventy)](https://www.11ty.dev/) |
+|---------|------|------|---------|--------|------|--------|--------|------|
+| **Language** | Ruby | Go | Python | Python | Python | Python | Python | JavaScript |
+| **GitHub Stars** | ~49k | ~78k | ~13k | ~2.6k | ~21k | ~3.8k | ~6k+ (Sphinx) | ~17k |
+| **GitHub Pages native** | ✅ Built-in | Via Actions | Via Actions | Via Actions | Via Actions | Via Actions | Via Actions | Via Actions |
+| **Build speed (1k posts)** | ~30s | **<1s** | ~10s | ~15s | ~5s | ~10s | ~15s | ~5s |
+| **Markdown support** | ✅ Kramdown | ✅ Goldmark | ✅ | ✅ (reST too) | ✅ | ✅ (+ Jinja2) | reST primary (MD via plugin) | ✅ (any template) |
+| **Templating** | Liquid | Go templates | Jinja2 | Mako / Jinja2 | Jinja2 | Jinja2 | Jinja2 | Nunjucks / Liquid / JS |
+| **Theme ecosystem** | Large (gems) | Very large | Medium (~150) | Small (~30) | 1 theme, very configurable | Small | Small | Growing |
+| **Blog-aware** | ✅ Native | ✅ Native | ✅ Native | ✅ Native | ⚠️ Plugin (blog plugin) | ✅ Native | ✅ Via Ablog | ✅ Native |
+| **Dark mode** | Theme-dependent | Theme-dependent | Theme-dependent | Some themes | ✅ Built-in | Theme-dependent | Theme-dependent | Theme-dependent |
+| **Search** | Plugin (Lunr/Algolia) | Plugin | Plugin | ✅ Built-in | ✅ Built-in | Plugin | ✅ Built-in | Plugin |
+| **i18n / multilingual** | Plugin | ✅ Built-in | Via plugins | ✅ Built-in | ✅ Built-in | ✅ Built-in | ❌ | Plugin |
+| **RSS/Atom feed** | Plugin (`jekyll-feed`) | ✅ Built-in | ✅ Built-in | ✅ Built-in | Plugin | ✅ Built-in | ✅ Built-in | Plugin |
+| **SEO tags / sitemap** | Plugin (`jekyll-seo-tag`) | ✅ Built-in | ✅ Plugin | ✅ Built-in | ✅ Built-in | Plugin | Plugin | Plugin |
+| **Existing content compat.** | ✅ Current format | Minor front matter changes | Needs front matter rewrite | Needs metadata rewrite | Needs restructure | Needs restructure | Major rewrite (reST) | Minor changes |
+| **Learning curve** | Low (familiar) | Low–Medium | Low (Python) | Medium | Low (Python) | Medium | High (reST) | Low–Medium |
+| **Admin UI / CMS** | Via Netlify CMS | Via Netlify CMS | No | No | No | ✅ Built-in admin | No | Via Netlify CMS |
+| **Active maintenance** | ✅ (v4.x) | ✅ Very active | ✅ Active | ✅ Active | ✅ Very active | ⚠️ Slow releases | ✅ Active | ✅ Very active |
+| **Python familiarity bonus** | ❌ Ruby | ❌ Go | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ JavaScript |
+
+> **Note:** Build speed figures are approximate relative comparisons based on community benchmarks and may vary by hardware and configuration. GitHub star counts are approximate as of early 2025. Verify theme/plugin links for current maintenance status before adoption.
+
+### 2.2 Python-Based Generators — Deeper Look
+
+Since the blog author's primary language is Python, here is a closer look at the Python options:
+
+#### Pelican
+
+- **Best for:** Developers who want a straightforward Python blog engine.
+- **Pros:** Clean Markdown-based workflow, Jinja2 templates (familiar to Flask/Django users), good plugin ecosystem (~150 plugins), active community, simple migration from Jekyll (tools exist).
+- **Cons:** Smaller theme selection than Jekyll/Hugo; no built-in dark mode in most themes; no built-in search.
+- **Migration effort:** Medium — front matter format differs (`Title:`, `Date:`, `Tags:` vs YAML), but converter scripts exist. Images/assets copy over easily.
+- **Themes to consider:** [Flex](https://github.com/alexandrevicenzi/Flex) (responsive, clean, dark mode), [Elegant](https://github.com/Pelican-Elegant/elegant) (feature-rich, SEO, search).
+
+#### Nikola
+
+- **Best for:** Multilingual blogs, Jupyter notebook integration.
+- **Pros:** Supports both Markdown and reStructuredText, built-in search, multilingual support, Jupyter notebook rendering, auto-rebuilds.
+- **Cons:** Smaller community, fewer themes, steeper learning curve.
+- **Migration effort:** Medium — has a Jekyll import command (`nikola import_wordpress` and manual Jekyll migration).
+
+#### MkDocs with Material theme
+
+- **Best for:** Technical documentation sites that also want a blog.
+- **Pros:** Beautiful Material Design theme, built-in search (Lunr), dark mode toggle, Python-native, excellent documentation, very active development, blog plugin added natively.
+- **Cons:** Originally designed for documentation, not blogs; blog plugin is relatively new; may feel over-engineered for a simple personal blog.
+- **Migration effort:** Medium-High — content structure is different (`docs/` directory based), front matter needs changes.
+
+#### Sphinx + Ablog
+
+- **Best for:** Projects already using Sphinx for documentation.
+- **Pros:** Powerful cross-referencing, excellent for technical content, Python ecosystem standard.
+- **Cons:** reStructuredText-centric (Markdown support is secondary via MyST), high learning curve, overkill for a personal blog.
+- **Migration effort:** High — posts would need significant restructuring.
+
+#### Lektor
+
+- **Best for:** Non-technical content editors who want a GUI.
+- **Pros:** Built-in admin panel (web UI for editing), flexible data models, Jinja2 templates.
+- **Cons:** Small community, slow release cycle, fewer themes and plugins.
+- **Migration effort:** Medium-High — content model is quite different from Jekyll.
+
+### 2.3 Recommendation Matrix
+
+| Criteria | Weight | Jekyll (modernized) | Hugo | Pelican | MkDocs Material |
+|----------|--------|---------------------|------|---------|-----------------|
+| Migration effort from current site | High | ⭐⭐⭐⭐⭐ Minimal | ⭐⭐⭐⭐ Low | ⭐⭐⭐ Medium | ⭐⭐ Medium-High |
+| Build speed | Low | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Python ecosystem familiarity | Medium | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Theme quality & selection | High | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ (1 theme, but excellent) |
+| Blog features out of the box | High | ⭐⭐⭐⭐ (w/ plugins) | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Community & support | Medium | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| GitHub Pages compatibility | High | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| **Weighted total** | | **High** | **Very High** | **Medium-High** | **High** |
+
+### 2.4 Final Recommendation
+
+1. **Easiest path:** Stay with **Jekyll** + modern theme (Chirpy or Minimal Mistakes). Least work, existing content is already in the right format, native GitHub Pages support.
+2. **Best if moving to Python:** **Pelican** with the Flex theme. Familiar Python tooling, Jinja2 templates, straightforward blog engine. Converter scripts can help with migration.
+3. **Best overall (if willing to learn Go templates):** **Hugo**. Fastest builds, largest theme ecosystem, most active community, excellent documentation.
+4. **Best for docs + blog hybrid:** **MkDocs Material**. If the blog will eventually include documentation or technical guides, this is the most polished option.
+
+---
+
+## 3. Version & Dependency Upgrades
+
+### 3.1 Add a `Gemfile` for Reproducible Builds
 
 ```ruby
 source "https://rubygems.org"
@@ -50,7 +141,7 @@ gem "jekyll-paginate"
 
 This pins the exact Jekyll version that GitHub Pages uses and adds commonly needed plugins.
 
-### 2.2 Update `_config.yml`
+### 3.2 Update `_config.yml`
 
 - Remove the `pygments: true` line (deprecated; `highlighter: rouge` is already set).
 - Remove `auto: true` (replaced by `--watch` in modern Jekyll).
@@ -59,7 +150,7 @@ This pins the exact Jekyll version that GitHub Pages uses and adds commonly need
 - Update `production_url` from `http://` to `https://`.
 - Add SEO-related fields (`description`, `url`, `baseurl`, `locale`, `social` links).
 
-### 2.3 Update `Rakefile` or Replace It
+### 3.3 Update `Rakefile` or Replace It
 
 The `Rakefile` uses legacy Jekyll CLI syntax. Options:
 
@@ -68,9 +159,9 @@ The `Rakefile` uses legacy Jekyll CLI syntax. Options:
 
 ---
 
-## 3. Visual / Design Revamp
+## 4. Visual / Design Revamp
 
-### 3.1 Theme Migration
+### 4.1 Theme Migration
 
 **Recommended approach:** Replace `the-program` + Jekyll-Bootstrap with a modern, maintained Jekyll theme.
 
@@ -84,7 +175,7 @@ Top candidates (all free, GitHub Pages compatible, actively maintained):
 
 **Recommendation:** **Minimal Mistakes** or **Chirpy** – both are well-documented, mobile-friendly, and support tag/category archives out of the box.
 
-### 3.2 What the New Theme Should Provide
+### 4.2 What the New Theme Should Provide
 
 - **Responsive design** – mobile-first layout
 - **Dark / light mode toggle**
@@ -96,7 +187,7 @@ Top candidates (all free, GitHub Pages compatible, actively maintained):
 - **Table of contents** sidebar for longer posts
 - **Syntax-highlighted code blocks** with copy button
 
-### 3.3 Migration Steps
+### 4.3 Migration Steps
 
 1. Install the chosen theme as a Ruby gem (or remote theme).
 2. Remove `_includes/JB/`, `_includes/themes/`, `assets/themes/` directories.
@@ -109,9 +200,9 @@ Top candidates (all free, GitHub Pages compatible, actively maintained):
 
 ---
 
-## 4. Content Revamp
+## 5. Content Revamp
 
-### 4.1 About Page
+### 5.1 About Page
 
 The current About page (`about.md`) is a placeholder. It should be rewritten to include:
 
@@ -119,7 +210,7 @@ The current About page (`about.md`) is a placeholder. It should be rewritten to 
 - Links to GitHub, LinkedIn, Twitter/X, and any speaking/conference profiles.
 - Optionally a professional headshot or avatar.
 
-### 4.2 Homepage
+### 5.2 Homepage
 
 The current homepage (`index.md`) shows only the last 4 posts with a casual intro. Modernize it to:
 
@@ -127,14 +218,14 @@ The current homepage (`index.md`) shows only the last 4 posts with a casual intr
 - Display recent posts with excerpts (not just titles).
 - Optionally feature "pinned" or "popular" posts.
 
-### 4.3 Existing Posts Cleanup
+### 5.3 Existing Posts Cleanup
 
 - **Review all 16 posts** for broken links (Twitter links may be broken since the rebrand to X, Travis CI links may be dead).
 - Fix any image paths that break during theme migration.
 - Add `excerpt` or `description` front matter to posts that lack it, for better SEO and social previews.
 - Consider adding `last_modified_at` dates for SEO.
 
-### 4.4 New Content Ideas
+### 5.4 New Content Ideas
 
 Given the blog's history (Python, DevOps, CI/CD, conferences), potential new posts:
 
@@ -143,7 +234,7 @@ Given the blog's history (Python, DevOps, CI/CD, conferences), potential new pos
 - Updated thoughts on GitHub Actions (the 2020 post is popular).
 - ScyllaDB / database topics from professional experience.
 
-### 4.5 Navigation
+### 5.5 Navigation
 
 Add a clear, consistent navigation bar:
 
@@ -157,9 +248,9 @@ Remove the "py Ammo." link if the page is no longer relevant, or update it.
 
 ---
 
-## 5. CI/CD & Infrastructure
+## 6. CI/CD & Infrastructure
 
-### 5.1 GitHub Actions Workflow
+### 6.1 GitHub Actions Workflow
 
 Create `.github/workflows/pages.yml`:
 
@@ -206,7 +297,7 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-### 5.2 Additional CI Checks (Optional)
+### 6.2 Additional CI Checks (Optional)
 
 - **HTML Proofer** – validates links, images, and HTML in the built site.
 - **Markdown lint** – catches formatting issues in posts.
@@ -214,7 +305,7 @@ jobs:
 
 ---
 
-## 6. Recommended Migration Path
+## 7. Recommended Migration Path
 
 ### Phase 1 – Foundation (1–2 days)
 
@@ -250,12 +341,14 @@ jobs:
 
 ---
 
-## 7. Summary of Key Decisions Needed
+## 8. Summary of Key Decisions Needed
 
 | Decision | Options | Recommendation |
 |----------|---------|----------------|
-| Theme | Minimal Mistakes / Chirpy / Other | **Chirpy** – clean dev-blog aesthetic, built-in search and dark mode |
+| Static site generator | Jekyll / Hugo / Pelican / MkDocs Material / Nikola | **Jekyll** (easiest migration) or **Pelican** (if Python tooling is preferred) — see §2 |
+| Theme (if Jekyll) | Minimal Mistakes / Chirpy / Other | **Chirpy** – clean dev-blog aesthetic, built-in search and dark mode |
+| Theme (if Pelican) | Flex / Elegant / Other | **Flex** – responsive, dark mode, clean design |
 | Comments | Disqus / giscus / utterances / None | **giscus** – GitHub Discussions-based, no ads, lightweight |
 | Analytics | GA4 / Plausible / None | **None** or **Plausible** – privacy-friendly; GA4 if tracking is important |
 | Deployment | GitHub Pages auto / GitHub Actions | **GitHub Actions** – more control, can add build checks |
-| Feed | FeedBurner / jekyll-feed | **jekyll-feed** – native, no third-party dependency |
+| Feed | FeedBurner / jekyll-feed / built-in | **jekyll-feed** (Jekyll) or built-in (Pelican/Hugo) – no third-party dependency |
