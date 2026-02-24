@@ -7,8 +7,6 @@ tags: [python, cassandra, scylladb, ai, open-source, pydantic]
 ---
 {% include JB/setup %}
 
-# Coodie: A 4-year-old idea brought to life by AI (and some coffee)
-
 So, let's rewind a bit. About four years ago, I was looking at [Beanie] — this really nifty, Pydantic-based ODM for MongoDB. And as someone who spends an unhealthy amount of time deep in the trenches of ScyllaDB and Cassandra, I had a thought: "Where is *my* Beanie? I want a hoodie, but for Cassandra." And thus, the name was born: **coodie** = **c**assandra + beanie (h**oodie**). Catchy, right?
 
 Like any respectable developer, I rushed to GitHub, created the repository [fruch/coodie], maybe wrote a highly ambitious `README.md`, set up a `pyproject.toml`, and then... absolutely nothing. Crickets. Life happened. I had CI pipelines to fix, Scylla drivers to maintain, conferences like PyConIL and EuroPython to attend, and live-tweeting to do. coodie just sat there, gathering digital dust, a glorious monument to my good intentions and severe lack of free time.
