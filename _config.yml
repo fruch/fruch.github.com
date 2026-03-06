@@ -26,6 +26,10 @@ author :
 #
 production_url : https://fruch.github.io
 
+url: https://fruch.github.io
+baseurl: ""
+repository: fruch/fruch.github.com
+
 highlighter: rouge
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash

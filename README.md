@@ -1,42 +1,90 @@
-# Jekyll-Bootstrap
+# Fruch's Blog
 
-The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
+A personal blog powered by [Jekyll](https://jekyllrb.com/) and hosted on [GitHub Pages](https://pages.github.com/).
 
-## Usage
+## Quickstart
 
-For all usage and documentation please see: <http://jekyllbootstrap.com>
+### Prerequisites
 
-## Version
+You need **Ruby** (>= 2.7) and **Bundler** installed.
 
-0.2.13 - stable and versioned using [semantic versioning](http://semver.org/).
+#### Linux (Ubuntu/Debian)
 
-## Contributing 
+```bash
+sudo apt-get update
+sudo apt-get install ruby-full build-essential zlib1g-dev
+gem install bundler
+```
 
-This repository tracks 2 projects:
+#### macOS
 
-- **Jekyll-Bootstrap Framework.**  
-  The framework for which users should clone and build their blog on top of is available in the master branch.
-  
-  To contribute to the framework please make sure to checkout your branch based on `jb-development`!!
-  This is very important as it allows me to accept your pull request without having to publish a public version release.
-  
-  Small, atomic Features, bugs, etc.   
-  Use the `jb-development` branch but note it will likely change fast as pull requests are accepted.   
-  Please rebase as often as possible when working.   
-  Work on small, atomic features/bugs to avoid upstream commits affecting/breaking your development work.
-  
-  For Big Features or major API extensions/edits:   
-  This is the one case where I'll accept pull-requests based off the master branch.
-  This allows you to work in isolation but it means I'll have to manually merge your work into the next public release.
-  Translation : it might take a bit longer so please be patient! (but sincerely thank you).
- 
-- **Jekyll-Bootstrap Documentation Website.**    
-  The documentation website at <http://jekyllbootstrap.com> is maintained in the gh-pages branch.
-  Please fork and contribute documentation additions to this branch only.
+Ruby is pre-installed on macOS. If you need a newer version, use [Homebrew](https://brew.sh/):
 
-The master and gh-pages branch do not share the same ancestry. Please treat them as completely separate git repositories!
+```bash
+brew install ruby
+gem install bundler
+```
 
+Make sure the Homebrew Ruby is on your `PATH`. Add this to your `~/.zshrc` or `~/.bash_profile`:
+
+```bash
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+```
+
+#### Windows
+
+Install Ruby using [RubyInstaller](https://rubyinstaller.org/) (choose the version **with DevKit**). After installation, run:
+
+```cmd
+gem install bundler
+```
+
+### Install Dependencies
+
+Clone the repository and install the required gems:
+
+```bash
+git clone https://github.com/fruch/fruch.github.com.git
+cd fruch.github.com
+bundle install
+```
+
+### Preview the Blog Locally
+
+```bash
+bundle exec jekyll serve --livereload
+```
+
+Or use the Rake task:
+
+```bash
+rake preview
+```
+
+The site will be available at **http://localhost:4000**. Changes to files are automatically detected and the browser will refresh.
+
+### Build the Site
+
+To generate the static site without starting a server:
+
+```bash
+bundle exec jekyll build
+```
+
+The output is written to the `_site/` directory.
+
+## Creating a New Post
+
+```bash
+rake post title="My New Post"
+```
+
+This creates a new Markdown file in `_posts/` with the correct front matter.
+
+## Deployment
+
+The site is automatically built and deployed to GitHub Pages via a [GitHub Actions workflow](.github/workflows/pages.yml) on every push to `master`.
 
 ## License
 
-[Creative Commons](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+[Creative Commons](https://creativecommons.org/licenses/by-nc-sa/3.0/)
