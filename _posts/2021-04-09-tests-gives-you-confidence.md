@@ -149,41 +149,43 @@ the project can move
 
 
 
+# Tests gives you confidence - But data gives you power
+
 ## Introduction 
 
-* Did you ever found yourself chase a flaky test down  the rabbit hole ? 
+* Did you ever found yourself chasing a flaky test down  the rabbit hole ? 
 
 * how do you know a test is flaky ? 
 
 * 1% failure rate ?  10% failure ?
 
-* where you get the information from ?
+* where you get all that information from ?
 
 I'm Israel Fruchter, and I'm a Test and Automation Team Leader in Scylladb
 and author of the open source project `pytest-elk-reporter`
 
-Today we'll try to show how simple it is to collect test information out
-of pytest runs, and use it on to learn more things about your tests.
+Today we'll try to show how simple it is to collect test information, 
+and use it on to learn more things about your tests.
 (and also a bit of the origin story of that project)
 
-This would be a short talk, you can hit me later on the venues or at tweeter if you have more questions 
+This would be a ~25min talk, you can hit me later on the venues or at tweeter if you will have questions 
 
-# Timeout story
+lets start with a story
 
 ## Background and Context
 
-* We have this poor scylladb developer - we'll name him Mike 
-* That need to handle an increasing number of functional tests
-* long running integration tests running from 30sec - 1h (not you the common unittest)
+* That's Mike - he's a scylladb developer 
+* He need to handle an increasing number of functional/integration tests
+* long running tests running from 30secs - 1h (not your common unittest)
 * Around  ~3500 of them
 * Those are running almost 24/7
 * Lots information get spit at back you mostly into console 
 
 ## Challenge, complication, problem
 
-* He feed it into your CI system, and letting the test loose. 
-* And he find himself with silly amount of data
-* And then one morning: He finds out the 12 hours timeout on a jenkins job, and he has not data
+* He feed it into your CI system (Jenkins), and letting the test loose. 
+* And he find himself with extremely silly amounts of data, which left on Jenkins logs
+* And then one morning: jenkins job timed out after 12 hours, and no tests results on the Jenkins job
 
 [facepalm gif]
 
@@ -226,3 +228,6 @@ So here's comes `pytest-elk-reporter`, lets cover what it has for him:
 
 Save you test data, it gonna worth you a fortune
 and next part gonna touch exactly on that - "Running test on spot instances" 
+
+Got check out the github page of `pytest-elk-report`
+
