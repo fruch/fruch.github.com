@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [inspiration]
 ---
-{% include JB/setup %}
 
 People always complain about tools, me included.
 (a.k.a trying to show that their own tool set are better)

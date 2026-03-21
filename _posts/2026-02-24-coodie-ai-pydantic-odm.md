@@ -5,7 +5,6 @@ description: "How a half-baked repo from 4 years ago finally became a real Pydan
 category: python
 tags: [python, cassandra, scylladb, ai, open-source, pydantic]
 ---
-{% include JB/setup %}
 
 So, let's rewind a bit. About four years ago, I was looking at [Beanie] — this really nifty, Pydantic-based ODM for MongoDB. And as someone who spends an unhealthy amount of time deep in the trenches of ScyllaDB and Cassandra, I had a thought: "Where is *my* Beanie? I want a hoodie, but for Cassandra." And thus, the name was born: **coodie** = **c**assandra + beanie (h**oodie**). Catchy, right?
 

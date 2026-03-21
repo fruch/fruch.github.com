@@ -5,7 +5,6 @@ description: ""
 category:
 tags: [elasticsearch, python, pytest, plugin]
 ---
-{% include JB/setup %}
 
 # pytest-elk-reporter
 

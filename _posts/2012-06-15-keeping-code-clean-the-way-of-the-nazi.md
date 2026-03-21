@@ -5,7 +5,6 @@ description: ""
 category: Blog
 tags: [python]
 ---
-{% include JB/setup %}
 
 Reading some comments in [Mouse vs Python][1],
 I've enounter this gem [pep8nazi][2],

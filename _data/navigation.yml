@@ -1,0 +1,11 @@
+main:
+  - title: "Archive"
+    url: /archive.html
+  - title: "Categories"
+    url: /categories.html
+  - title: "Tags"
+    url: /tags.html
+  - title: "py Ammo."
+    url: /ammo_bag.html
+  - title: "About"
+    url: /about.html

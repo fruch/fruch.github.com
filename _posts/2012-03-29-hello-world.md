@@ -5,7 +5,6 @@ description: "Welcoming my self into the blogsphere"
 category: Blog
 tags: [first]
 ---
-{% include JB/setup %}
 
 So I've started a blog. 
 

@@ -5,7 +5,6 @@ description: ""
 category:
 tags: [python, github-actions, ci, travis]
 ---
-{% include JB/setup %}
 
 # Taking Github Actions for a walk in the park
 

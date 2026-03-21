@@ -5,7 +5,6 @@ description: ""
 category:
 tags: [windows, linux, wsl, vscode, docker]
 ---
-{% include JB/setup %}
 
 # WSL
 

@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [python]
 ---
-{% include JB/setup %}
 
 Today on work on a python related mailing list someone sent this snippet of code he didn't wrote.
 and that was causing some of the server he worte/manged some troubles.

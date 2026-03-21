@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [docker, microsoft, linux]
 ---
-{% include JB/setup %}
 
 Today [this][1] blog post of Scott Guthrie from Microsoft was slash-dotted.
 Interesting enough, I had no idea one can actually run Docker on Windows, got me to find that there's an [installer][2],

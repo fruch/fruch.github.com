@@ -5,7 +5,6 @@ description: ""
 category: Blog
 tags: [testing, planning]
 ---
-{% include JB/setup %}
 
 Every time I need to start working on planning documentation,
 I get this weird feeling that I'm wasting my time.

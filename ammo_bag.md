@@ -1,9 +1,10 @@
 ---
-layout: page
+layout: single
 title: "Python Ammunition Bag"
-description: "All the nice python package I used along the way"
+description: "All the nice python packages I used along the way"
+permalink: /ammo_bag.html
+author_profile: true
 ---
-{% include JB/setup %}
 
 [![Ammo](/assets/img/ammo.jpg)][1]
 

@@ -5,7 +5,6 @@ description: ""
 category:
 tags: [devops, TLV, confrence]
 ---
-{% include JB/setup %}
 
 # My DevopsDaysTLV Summary
 
