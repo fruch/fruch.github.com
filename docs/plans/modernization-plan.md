@@ -339,6 +339,20 @@ jobs:
 - [ ] Update `README.md` with development setup instructions
 - [ ] Final cross-browser and mobile testing
 
+### Phase 5 – Blog Writing Workflow (ongoing)
+
+- [ ] Extract style guide from existing posts → `.claude/skills/blog-style-guide.md`
+- [ ] Create `_drafts/` directory for work-in-progress posts
+- [ ] Build `blog-post-writer` Claude Code skill with four phases:
+  - **Brainstorm:** Dump raw topics → AI mixes and cross-pollinates → ranked candidate list
+  - **Outline:** Pick a topic → AI builds structured outline with section plan and code placeholders
+  - **Write:** Guided section-by-section writing session with style enforcement
+  - **Picture:** AI-generated image prompt suggestions matching post content and tone
+- [ ] Validate skill works end-to-end with a test blog post
+- [ ] Iterate on style guide as new posts establish patterns
+
+> See full implementation plan: `docs/superpowers/plans/2026-03-21-blog-post-writer-skill.md`
+
 ---
 
 ## 8. Summary of Key Decisions Needed
