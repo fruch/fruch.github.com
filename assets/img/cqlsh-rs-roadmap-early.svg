@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="880" height="540">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="barFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="barActive" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+    <clipPath id="barClip">
+      <rect x="90" y="383" width="700" height="20" rx="3"/>
+    </clipPath>
+    <style>
+      @keyframes pulse {
+        0%, 100% { r: 28; opacity: 0.4; }
+        50% { r: 34; opacity: 0.15; }
+      }
+      @keyframes pulse-inner {
+        0%, 100% { r: 32; opacity: 0.25; }
+        50% { r: 36; opacity: 0.1; }
+      }
+      .pulse-ring { animation: pulse 2s ease-in-out infinite; }
+      .pulse-ring-outer { animation: pulse-inner 2s ease-in-out infinite; }
+      @keyframes glow-text {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+      .glow { animation: glow-text 2s ease-in-out infinite; }
+    </style>
+  </defs>
+  <rect width="880" height="540" fill="url(#bg)" rx="12"/>
+  <rect x="1" y="1" width="878" height="538" fill="none" stroke="#1e293b" stroke-width="2" rx="12"/>
+  <text x="440" y="40" text-anchor="middle" font-family="monospace" font-size="20" font-weight="700" fill="#f8fafc">cqlsh-rs Development Roadmap</text>
+  <text x="440" y="62" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#94a3b8">Rewriting cqlsh in Rust -- one semicolon at a time</text>
+  <text x="260" y="88" text-anchor="middle" font-family="monospace" font-size="13" fill="#e2e8f0">5/108 tasks (5%)</text>
+  <text x="600" y="88" text-anchor="middle" font-family="monospace" font-size="12" fill="#94a3b8">0.4 tasks/day  |  ~267 days remaining (ETA: Dec 2026)</text>
+  <line x1="60" y1="100" x2="820" y2="100" stroke="#1e293b" stroke-width="1"/>
+  <line x1="106.66666666666667" y1="195" x2="773.3333333333334" y2="195" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+  <line x1="106.66666666666667" y1="195" x2="151.11111111111111" y2="195" stroke="#f59e0b" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+  <circle class="pulse-ring-outer" cx="106.66666666666667" cy="195" r="32" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.25"/>
+  <circle class="pulse-ring" cx="106.66666666666667" cy="195" r="28" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="106.66666666666667" cy="195" r="24" fill="#92400e" stroke="#f59e0b" stroke-width="3"/>
+  <text x="106.66666666666667" y="201" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#fff">1</text>
+  <text x="106.66666666666667" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Bootstrap MVP</text>
+  <text x="106.66666666666667" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">5/15 tasks</text>
+  <text x="106.66666666666667" y="257" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#f59e0b">33%</text>
+  <text x="106.66666666666667" y="273" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">CLI, config, driver, basic REPL</text>
+  <circle cx="240.0" cy="195" r="24" fill="#334155" stroke="#64748b" stroke-width="3"/>
+  <text x="240.0" y="201" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#fff">2</text>
+  <text x="240.0" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Usable Shell</text>
+  <text x="240.0" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">0/22 tasks</text>
+  <text x="240.0" y="273" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">Line editing, formatting, core commands</text>
+  <circle cx="373.33333333333337" cy="195" r="24" fill="#334155" stroke="#64748b" stroke-width="3"/>
+  <text x="373.33333333333337" y="201" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#fff">3</text>
+  <text x="373.33333333333337" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Tab Completion &amp; Output</text>
+  <text x="373.33333333333337" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">0/21 tasks</text>
+  <text x="373.33333333333337" y="273" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">Completion engine, output formats, color</text>
+  <circle cx="506.6666666666667" cy="195" r="24" fill="#334155" stroke="#64748b" stroke-width="3"/>
+  <text x="506.6666666666667" y="201" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#fff">4</text>
+  <text x="506.6666666666667" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">COPY &amp; Advanced</text>
+  <text x="506.6666666666667" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">0/24 tasks</text>
+  <text x="506.6666666666667" y="273" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">COPY TO/FROM, remaining DESCRIBE, batch</text>
+  <circle cx="640.0" cy="195" r="24" fill="#334155" stroke="#64748b" stroke-width="3"/>
+  <text x="640.0" y="201" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#fff">5</text>
+  <text x="640.0" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Testing &amp; Benchmarks</text>
+  <text x="640.0" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">0/16 tasks</text>
+  <text x="640.0" y="273" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">Test suites, benchmarks, CI matrix</text>
+  <circle cx="773.3333333333334" cy="195" r="24" fill="#334155" stroke="#64748b" stroke-width="3"/>
+  <text x="773.3333333333334" y="201" text-anchor="middle" font-family="monospace" font-size="16" font-weight="700" fill="#fff">6</text>
+  <text x="773.3333333333334" y="155" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">Polish &amp; Release</text>
+  <text x="773.3333333333334" y="243" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">0/10 tasks</text>
+  <text x="773.3333333333334" y="273" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">Releases, packaging, docs, migration</text>
+  <polygon points="100.66666666666667,123 112.66666666666667,123 106.66666666666667,131" fill="#fbbf24"/>
+  <text class="glow" x="106.66666666666667" y="119" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#fbbf24">YOU ARE HERE</text>
+  <circle cx="300" cy="315" r="5" fill="#22c55e"/>
+  <text x="310" y="319" font-family="sans-serif" font-size="11" fill="#cbd5e1">Completed</text>
+  <circle cx="420" cy="315" r="5" fill="#f59e0b"/>
+  <text x="430" y="319" font-family="sans-serif" font-size="11" fill="#cbd5e1">In Progress</text>
+  <circle cx="540" cy="315" r="5" fill="#64748b"/>
+  <text x="550" y="319" font-family="sans-serif" font-size="11" fill="#cbd5e1">Upcoming</text>
+  <rect x="80" y="340" width="720" height="108" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <rect x="80" y="340" width="720" height="24" rx="6" fill="#334155"/>
+  <rect x="80" y="358" width="720" height="6" fill="#334155"/>
+  <text x="94" y="356" font-family="sans-serif" font-size="11" fill="#94a3b8">Copying 103 features to Rust...</text>
+  <circle cx="782" cy="352" r="5" fill="#ef4444" opacity="0.6"/>
+  <circle cx="766" cy="352" r="5" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="750" cy="352" r="5" fill="#22c55e" opacity="0.6"/>
+  <rect x="90" y="383" width="700" height="20" rx="3" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <g clip-path="url(#barClip)">
+    <rect x="92" y="385" width="12" height="16" rx="2" fill="url(#barActive)" opacity="0.9"/>
+    <rect x="106" y="385" width="12" height="16" rx="2" fill="url(#barActive)" opacity="0.9"/>
+  </g>
+  <text x="440.0" y="397" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#fff" opacity="0.9">5%</text>
+  <text x="440.0" y="425" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#64748b" font-style="italic">Approximately 8.9 months remaining... just like Windows said</text>
+  <text x="440.0" y="442" text-anchor="middle" font-family="monospace" font-size="8" fill="#475569">8 PRs merged  |  0.4 tasks/day  |  5 tasks done</text>
+  <text x="440" y="526" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#334155">Auto-generated from docs/progress.json  |  Last updated: 2026-03-13</text>
+</svg>
