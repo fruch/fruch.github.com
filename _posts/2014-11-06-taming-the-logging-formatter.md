@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [python,logging]
 ---
-{% include JB/setup %}
 
 We love logging, and we use it all around our code. (it's the standard/built-in/batteries included)
 

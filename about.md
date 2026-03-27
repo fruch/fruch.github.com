@@ -1,14 +1,21 @@
 ---
-layout: page
-title: "About Fruch"
-description: "All the thing I have to say for myself"
+layout: single
+title: "About"
+permalink: /about.html
+author_profile: true
 ---
-{% include JB/setup %}
 
-# [TBD](http://acronyms.thefreedictionary.com/TBD) #
+## About Me
 
-this is always the part I need help with...
-I someone has anything to say about me. (please comment, and I'll add it, if I find it suitable :))
+I'm Israel Fruchter — a software engineer with a passion for Python, DevOps,
+and open-source software.
 
-* *TODO:* also add a good picture... (better then the facebook one..)
-* *TODO:* translate it into Hebrew as well.
+I've been working in the software industry for years, contributing to projects
+like [ScyllaDB](https://www.scylladb.com/) and building tools that make
+developers' lives easier.
+
+### Find Me Online
+
+- **GitHub:** [github.com/fruch](https://github.com/fruch)
+- **Twitter:** [@IsraelFruchter](https://twitter.com/IsraelFruchter)
+- **Email:** [israel.fruchter@gmail.com](mailto:israel.fruchter@gmail.com)

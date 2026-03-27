@@ -5,7 +5,6 @@ description: ""
 category: Blog
 tags: [python,django]
 ---
-{% include JB/setup %}
 
 I've read this story on [Slashdot][1], and thought I might take the database as a django practice build a real web site.
 Who want to join me ?

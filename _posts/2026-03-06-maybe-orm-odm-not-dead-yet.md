@@ -5,7 +5,6 @@ description: "Benchmarking coodie against raw CQL and cqlengine reveals that the
 category: python
 tags: [python, cassandra, scylladb, ai, open-source, pydantic, benchmarks]
 ---
-{% include JB/setup %}
 
 So, let's pick up where we left off. A couple of weeks ago, I wrote about how I took a 4-year-old fever dream—an ODM for Cassandra and ScyllaDB called [coodie]—and let an AI build the whole thing while I sipped my morning coffee.
 

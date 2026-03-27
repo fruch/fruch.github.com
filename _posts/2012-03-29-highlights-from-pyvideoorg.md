@@ -5,7 +5,6 @@ description: ""
 category: Blog 
 tags: [python, testing]
 ---
-{% include JB/setup %}
 
 Look like people were quite busy in the latest [US PyCon][1],
 I need to promise myself to actually attend one in the next coming years.

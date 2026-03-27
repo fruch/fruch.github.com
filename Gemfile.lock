@@ -308,6 +308,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed
+  jekyll-include-cache
   jekyll-paginate
   jekyll-seo-tag
   jekyll-sitemap

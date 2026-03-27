@@ -307,20 +307,23 @@ jobs:
 
 ## 7. Recommended Migration Path
 
-### Phase 1 – Foundation (1–2 days)
+### Phase 1 – Foundation (1–2 days) ✅
 
-- [ ] Add `Gemfile` and `Gemfile.lock`
-- [ ] Clean up `_config.yml` (remove deprecated options, fix URLs to HTTPS)
-- [ ] Add GitHub Actions workflow for build & deploy
-- [ ] Verify the site builds and deploys as-is before changing the theme
+- [x] Add `Gemfile` and `Gemfile.lock`
+- [x] Clean up `_config.yml` (remove deprecated options, fix URLs to HTTPS)
+- [x] Add GitHub Actions workflow for build & deploy
+- [x] Verify the site builds and deploys as-is before changing the theme
 
-### Phase 2 – Theme Migration (2–3 days)
+### Phase 2 – Theme Migration (2–3 days) ✅
 
-- [ ] Choose and install new theme (Minimal Mistakes or Chirpy)
-- [ ] Migrate layouts and remove Jekyll-Bootstrap scaffolding (`_includes/JB/`, `_includes/themes/`, `assets/themes/`)
-- [ ] Update all posts to remove `{% include JB/setup %}` lines
-- [ ] Configure new theme settings (navigation, author, social links, colors)
-- [ ] Test on mobile and desktop
+- [x] Choose and install new theme (Minimal Mistakes via `remote_theme`)
+- [x] Migrate layouts and remove Jekyll-Bootstrap scaffolding (`_includes/JB/`, `_includes/themes/`, `assets/themes/`)
+- [x] Update all posts to remove `{% include JB/setup %}` lines
+- [x] Configure new theme settings (navigation, author, social links, colors)
+- [x] Remove legacy feed files (`atom.xml`, `feed.python.xml`, `sitemap.txt`) — replaced by `jekyll-feed` and `jekyll-sitemap` plugins
+- [x] Modernize 404 page
+- [x] Update About page with proper bio
+- [x] Test build succeeds
 
 ### Phase 3 – Content Refresh (1–2 days)
 
