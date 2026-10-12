@@ -209,7 +209,11 @@ The migration surfaced exactly [one coodie issue][issue271]. Everything else ran
      (argus#1058, #1059, #1066, #1106). Every claim is from those PRs, but he
      hasn't approved it. Replace with his own words before publishing. -->
 
-> We moved the whole Argus backend from cqlengine to coodie - 37 core models, the plugin models and all 18 UDTs, one service at a time. Table and type names stayed exactly what cqlengine created, so apart from one vector index there was no data migration. After that the models went to `coodie.aio`, and every request that touches Scylla is now async.
+> Honestly, I expected the migration to be the scary part. It wasn't - 37 core models, the plugin models and all 18 UDTs moved over one service at a time, and the schema check came back matching cqlengine's table for table (sans one vector index name, which we fixed). Zero data migration. I'll take that.
+>
+> The fun started after. FastAPI alone got us out of the 1.5 second p99 swamp, but we were still sitting on sync calls, and they were piling up. Flipping the models to `coodie.aio` and throwing the independent reads into `asyncio.gather` is what got us the rest of the way - p99 is now under 100 ms most days, and `submit_run_config` went from over a second to 300 ms. Same database, same schema, just not waiting on things one at a time anymore.
+>
+> Also, having actual types on the models means the IDE yells at me before production does. Wayy better than finding out from a stack trace.
 >
 > — Alexey Kartashov, Argus maintainer
 
