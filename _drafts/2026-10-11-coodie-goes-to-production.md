@@ -65,11 +65,17 @@ owned_plans, participating_plans = await asyncio.gather(
 
 Performance was the point of the whole exercise, not a side effect. The PR applies this pattern hotspot by hotspot, with one `perf` commit per endpoint, and each commit message records which serial round-trips it removed.
 
-<!-- TODO(fruch): real production numbers would make this section. Ask Alexey for
-     before/after p50/p99 on a heavy endpoint (release dashboard? run page?),
-     request rate, or "N runs/day reported through coodie". Even one number beats none. -->
+Argus production metrics show the result in two steps. Prometheus only keeps data from the end of August, so the starting point is Argus already on sync coodie, still on Flask and uWSGI.
 
-[TODO: production numbers — e.g. p50/p99 of a heavy endpoint before/after the async flip]
+<img src="{{ site.baseurl }}/assets/img/argus-latency-daily.svg" width="90%" style="float: none; display: block; margin: 0 auto 1.5em;" alt="Daily request latency in Argus production. Before the FastAPI switch p99 is around 1.5 seconds and p95 around 450 ms; after it p99 drops below 250 ms and p95 to about 70 ms. After the coodie.aio switch p99 settles under 100 ms." />
+
+The move to FastAPI, with coodie still sync, fixed the tail. Across all endpoints, p99 dropped from about 1.5 s to under 250 ms, and p95 from about 450 ms to about 70 ms. The median stayed at about 32 ms: fast requests were always fast, but slow ones no longer queued behind each other.
+
+The switch to `coodie.aio` shows up per endpoint, wherever the `gather` pattern applied:
+
+<img src="{{ site.baseurl }}/assets/img/argus-latency-endpoints.svg" width="90%" style="float: none; display: block; margin: 0 auto 1.5em;" alt="Mean latency per endpoint across three phases. submit_run_config: 1621, 1139, 304 ms. get_testrun: 53, 32, 19 ms. submit_pytest_result: 140, 50, 50 ms. get_pytest_test_field_stats: 106, 53, 46 ms. submit_results: 247, 111, 117 ms." />
+
+`submit_run_config` went from 1.1 s to 0.3 s, and `get_testrun` from 32 ms to 19 ms. `submit_pytest_result`, the busiest endpoint at about 2 million calls in two weeks, stayed flat: it does one write, so there was nothing to run in parallel. Since the async switch, daily p99 has settled under 100 ms most days.
 
 Running queries in parallel only helps if each query is cheap to begin with. If the mapper adds a heavy tax to every call, `gather` just runs the slow calls side by side.
 
@@ -199,10 +205,13 @@ Changing a field's type is the classic trap: `makemigration` flags it as unsafe 
 
 The migration surfaced exactly [one coodie issue][issue271]. Everything else ran on coodie as released. A production user and a careful code review catch different bugs, though, so I also ran a [full architecture review][review] afterwards; its findings are fixed in the [1.7.x releases][release].
 
-<!-- TODO(fruch): a quote from Alexey here would be gold — what surprised him,
-     what he'd tell someone sitting on a cqlengine codebase. -->
+<!-- TODO(fruch): PLACEHOLDER written in Alexey's style from his PR comments
+     (argus#1058, #1059, #1066, #1106). Every claim is from those PRs, but he
+     hasn't approved it. Replace with his own words before publishing. -->
 
-[TODO: quote from Alexey]
+> We moved the whole Argus backend from cqlengine to coodie - 37 core models, the plugin models and all 18 UDTs, one service at a time. Table and type names stayed exactly what cqlengine created, so apart from one vector index there was no data migration. After that the models went to `coodie.aio`, and every request that touches Scylla is now async.
+>
+> — Alexey Kartashov, Argus maintainer
 
 ## Give coodie a try
 
