@@ -70,7 +70,7 @@ The `coodie.aio` switch is easier to see per endpoint, on the ones where the `ga
 
 Of course, running queries side by side only pays off if each one is cheap. If the mapper puts a heavy tax on every call, `gather` just gives you the slow calls in parallel. My [previous post][post2] measured that tax against hand-written CQL and cqlengine, and it came out small.
 
-Since then the benchmarks run in CI on every PR, against both the scylla and acsylla drivers. If a PR makes coodie slower it gets a comment, and every run lands on a [benchmark history dashboard][bench], so a regression looks like a step in a chart. Except CI runners are noisy, and noise can hide a real regression (or invent a fake one), so next I'm [counting CPU instructions][pr323] for the in-memory benchmarks, which the runner hardware can't mess with.
+Since then the benchmarks run in CI on every PR, against both the scylla and acsylla drivers. If a PR makes coodie slower it gets a comment, and every run lands on a [benchmark history dashboard][bench], so a regression looks like a step in a chart. Except CI runners are noisy, and noise can hide a real regression (or invent a fake one), so next I'm [counting CPU instructions][pr323] for the in-memory benchmarks, which the runner hardware can't mess with. It's the same trick ScyllaDB uses on itself: [`perf-simple-query` and `perf-cql-raw`][scylla-perf] report instructions per operation, and the weekly `perf-simple-query` runs in SCT [track `instructions_per_op` in Argus][sct-insns] as a regression metric.
 
 Performance  work is a never-ending story, hence I've put lots of focus to having those automated on the PR level, and tracked and outperform cqlengine that didn't had this kind of attention for years (maybe ever)
 
@@ -227,6 +227,8 @@ If you are using cqlengine you should definitely pick it up, the [migration guid
 [schema]: https://scylladb.github.io/coodie/guide/schema-management.html
 [bench]: https://scylladb.github.io/coodie/benchmarks/
 [pr323]: https://github.com/scylladb/coodie/pull/323
+[scylla-perf]: https://github.com/scylladb/scylladb/tree/master/test/perf
+[sct-insns]: https://github.com/scylladb/scylla-cluster-tests/blob/master/sdcm/argus_results.py
 [acsylla]: https://github.com/acsylla/acsylla
 [scylladb-rs-driver]: https://github.com/scylladb-zpp-2025-python-rs-driver/python-rs-driver
 [issue329]: https://github.com/scylladb/coodie/issues/329

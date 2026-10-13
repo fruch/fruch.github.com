@@ -57,7 +57,7 @@ if annotated:  # only the post itself, not the site menu and footer
 
 banner = (
     '<p class="draft-banner">Draft preview, not published yet. '
-    + ("Yellow: still waiting for Alexey's own quote." if annotated else "Numbers and quotes may still change.")
+    + ("Yellow: next 3 paragraphs to rewrite, plus Alexey's quote." if annotated else "Numbers and quotes may still change.")
     + "</p>"
 )
 page = f"""<title>{title}</title>
