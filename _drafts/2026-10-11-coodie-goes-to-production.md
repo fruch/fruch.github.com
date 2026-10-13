@@ -10,13 +10,10 @@ status: draft
 
 <img src="{{ site.baseurl }}/assets/img/coodie-day-job.jpg" width="75%" style="float: none; display: block; margin: 0 auto 1.5em;" alt="The coodie mascot, a knitted beanie wearing an ARGUS badge and holding a coffee, standing at a desk with a dashboard of green checkmarks" />
 
-Up until this summer, if you asked me what [coodie] does for a living, I'd have to admit it was "between jobs". Nice README, a [benchmark page][post2] I'm a bit too proud of, a handful of demo apps, and a [fun origin story][post1]. But no production system had hired it yet.
+Up until now, [coodie] was nice pet project, my first greenfield AI aided project with [fun origin story][post1]. now it's getting "real" day job, as we about to announce it replacing cqlengine cause it proven it self in the first field project.
+lets jump right into explaining the how and why:
 
 Now it has a day job, and not an easy one: it holds the test results ScyllaDB QA looks at before every release. No pressure.
-
-<!-- TODO(fruch): one or two lines on how this started - who pinged whom, was it
-     your idea or Alexey's, and how you felt the first time you saw coodie
-     in Argus's requirements. Detectors and readers both trust this kind of detail. -->
 
 ## Argus, and five years of cqlengine
 
@@ -75,7 +72,7 @@ Of course, running queries side by side only pays off if each one is cheap. If t
 
 Since then the benchmarks run in CI on every PR, against both the scylla and acsylla drivers. If a PR makes coodie slower it gets a comment, and every run lands on a [benchmark history dashboard][bench], so a regression looks like a step in a chart. Except CI runners are noisy, and noise can hide a real regression (or invent a fake one), so next I'm [counting CPU instructions][pr323] for the in-memory benchmarks, which the runner hardware can't mess with.
 
-Perf work is a never-ending story, there's always one more hotspot, one more driver to try, one more round of measurements. What I care about is that the wins stay won.
+Performance  work is a never-ending story, hence I've put lots of focus to having those automated on the PR level, and tracked and outperform cqlengine that didn't had this kind of attention for years (maybe ever)
 
 The same PR also got rid of most of the hand-written CQL. The prepared statement from before becomes a query-builder call with a column projection:
 
@@ -207,7 +204,9 @@ Argus now runs on coodie, fully async, on the same schema it had under cqlengine
 
 coodie lives in the [ScyllaDB GitHub organization][coodie], next to the drivers it builds on. cqlengine, meanwhile, is in maintenance mode: bug fixes, no new features. Starting with the next ScyllaDB Python driver release, importing cqlengine raises a deprecation warning that points to coodie (I sent that one in myself, [python-driver#1127][pd1127]).
 
-If you're using ScyllaDB from Python, give coodie a try, for new projects and for existing cqlengine code alike. The [migration guide][migration] and the [Argus walkthrough][argus-example] are good places to start, and if something doesn't fit, [open an issue][issues]. I'd really like to hear about it.
+If you’re using Scylla from python and like type annotation (i.e. pydantic and package using the same approach), you might want to give coodie a try.
+If you are using cqlengine you should definitely pick it up, the [migration guide][migration] and it match [skill][migration-skill] are good places to start understanding how to get it running.
+[issues] and [pull requests][pulls] are highly welcomed
 
 [coodie]: https://github.com/scylladb/coodie
 [Argus]: https://github.com/scylladb/argus
@@ -223,6 +222,8 @@ If you're using ScyllaDB from Python, give coodie a try, for new projects and fo
 [migration]: https://scylladb.github.io/coodie/migration/from-cqlengine.html
 [argus-example]: https://scylladb.github.io/coodie/migration/argus-example.html
 [issues]: https://github.com/scylladb/coodie/issues
+[pulls]: https://github.com/scylladb/coodie/pulls
+[migration-skill]: https://github.com/scylladb/coodie/tree/master/.github/skills/cqlengine-migration
 [schema]: https://scylladb.github.io/coodie/guide/schema-management.html
 [bench]: https://scylladb.github.io/coodie/benchmarks/
 [pr323]: https://github.com/scylladb/coodie/pull/323

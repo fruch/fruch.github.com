@@ -1,21 +1,9 @@
 {
-  "_top": "Only the yellow blocks need your own words: the 3 paragraphs the detectors and readers react to most, plus Alexey's quote (his to write). Everything else can stay as it is.",
+  "_top": "Your three rewritten paragraphs are in place (opening, performance, closing). Only Alexey's quote is still marked: it's waiting for his own words.",
   "_focus": [
     {
-      "match": "Up until this summer",
-      "note": "1 of 3: the opening. First thing readers and news feeds judge, and where Pangram's AI segment starts. Write how it actually started (who pinged whom, your first reaction to coodie in Argus's requirements). Keep the 'between jobs' joke only if you'd say it yourself."
-    },
-    {
-      "match": "Perf work is a never-ending story",
-      "note": "2 of 3: the single most AI-scored paragraph in the original (top for both local models and Binoculars). Two or three sentences in your own words: what's next for coodie perf, or a perf war story of yours."
-    },
-    {
-      "match": "using ScyllaDB from Python",
-      "note": "3 of 3: the closing call to action. Ranked among the most AI-like by the scorers, and it reads like marketing copy. Say in your own words why you'd tell a friend on cqlengine to switch now."
-    },
-    {
       "match": "Honestly, I expected the migration",
-      "note": "Alexey's quote: a placeholder in his style, and GPTZero's top-flagged sentences are in it. Not yours to rewrite. Ask Alexey for 2-3 sentences of his own."
+      "note": "Alexey's quote: still the placeholder in his style, and GPTZero's top-flagged sentences are in it. Waiting for 2-3 sentences from Alexey."
     }
   ]
 }
