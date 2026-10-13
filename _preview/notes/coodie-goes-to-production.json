@@ -1,0 +1,21 @@
+{
+  "_top": "Round 2: the next 3 paragraphs to put in your own words (yellow), plus Alexey's quote, still waiting for him. Your opening, perf and closing paragraphs are already in.",
+  "_focus": [
+    {
+      "match": "A blocking mapper inside a FastAPI app",
+      "note": "1 of 3: the async intro. GPTZero's second most-flagged sentence was in its first version ('Either way, you lose most of what async was supposed to give you'), and desklib ranked it second. One or two sentences on why sync cqlengine hurt Argus once it was on FastAPI."
+    },
+    {
+      "match": "Since then the benchmarks run in CI on every PR",
+      "note": "2 of 3: the CI benchmarks paragraph (your comment's spot; the Scylla perf-simple-query / perf-cql-raw links are now in it). Its 'CI runners are noisy' part was a top-2 AI score for three of the local models. Keep the links and facts, say it your way."
+    },
+    {
+      "match": "gives you <code",
+      "note": "3 of 3: the schema-migrations opener and the paragraph after it. On the rewritten draft, GPTZero's top AI sentences were exactly these ('coodie has a real schema toolkit on top of it', 'And for changes sync_table() shouldn't guess at...'). Facts: dry_run returns the CQL, Argus used it to verify names, drift warnings, versioned migration files + CLI."
+    },
+    {
+      "match": "Honestly, I expected the migration",
+      "note": "Alexey's quote: still the placeholder in his style. Waiting for his own words."
+    }
+  ]
+}

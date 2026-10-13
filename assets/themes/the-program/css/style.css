@@ -723,7 +723,8 @@ pre {
 .unit-article li code {
   padding: 2px 5px;
   white-space: nowrap;
-  background-color: #fff04a;
+  background-color: #fdf3c8;
+  border-radius: 3px;
 }
 .unit-article ol, ul {
 	margin: 0 0 1.685em 2em;
@@ -990,7 +991,8 @@ a.blog-title {
     height: 26px;
   }
   .the-header .unit-head .nav-global li a:hover {
-    background-color: #fff04a;
+    background-color: #fdf3c8;
+  border-radius: 3px;
     color: #474747;
   }
   .the-header .unit-head .nav-global li:nth-child(2) {
