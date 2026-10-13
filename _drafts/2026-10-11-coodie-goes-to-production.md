@@ -223,7 +223,7 @@ The migration surfaced exactly [one coodie issue][issue271]. Everything else ran
 
 Argus now runs on coodie, fully async, on the same schema it had under cqlengine. Thanks to Alexey for being the first production user and for a migration clean enough to serve as the reference example.
 
-coodie lives in the [ScyllaDB GitHub organization][coodie], next to the drivers it builds on. cqlengine, meanwhile, is moving into maintenance mode: bug fixes, but no new features ([docs change in review][pd1127]).
+coodie lives in the [ScyllaDB GitHub organization][coodie], next to the drivers it builds on. cqlengine, meanwhile, is moving into maintenance mode: bug fixes, but no new features (importing it will soon raise a deprecation warning pointing to coodie, [in review][pd1127]).
 
 If you use ScyllaDB from Python, we recommend giving coodie a try, for new projects and existing cqlengine code alike. Start with the [migration guide][migration] and the [Argus walkthrough][argus-example], and [open an issue][issues] when something doesn't fit.
 
