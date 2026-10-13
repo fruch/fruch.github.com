@@ -35,18 +35,18 @@ body = re.sub(r'href="/(?!/)', 'href="https://fruch.github.io/', body)
 
 
 def annotate(body, notes):
-    """Mark AI-written prose for rewriting and drop a facts-to-keep note under each heading."""
-    note = lambda key, cls="rw-note": f'<aside class="{cls}">{notes[key]}</aside>' if key in notes else ""
-    body = re.sub(r'<p><img ([^>]*src="assets/img/(?:argus-latency|coodie-sequential)[^>]*)>',
-                  r'<p class="keep"><img \1>', body)  # charts from real data: keep
-    body = body.replace("<p><img ", '<p class="ai-img"><img ')  # generated illustrations
-    body = re.sub(r"<(p|li|h2)(?=[ >])(?![^>]*class=)", r'<\1 class="rw"', body)
-    body = body.replace("<blockquote>", '<blockquote class="rw">')
-    body = re.sub(r'(<h2 class="rw" id="([^"]+)">.*?</h2>)', lambda m: m.group(1) + note(m.group(2)), body)
-    first = body.find('<p class="ai-img">')
-    body = body[:first] + note("_top", "rw-note rw-top") + note("_images", "rw-note rw-img") + body[first:]
-    intro = body.find('<p class="rw">')
-    return body[:intro] + note("_intro") + body[intro:]
+    """Highlight the paragraphs listed in notes["_focus"] (matched by text) and put each one's note above it."""
+    for item in notes["_focus"]:
+        idx = body.find(item["match"])
+        if idx < 0:
+            sys.exit(f"rewrite note: text not found in the post: {item['match']!r}")
+        bq = body.rfind("<blockquote", 0, idx)
+        tag = bq if bq > body.rfind("</blockquote>", 0, idx) else body.rfind("<p", 0, idx)  # whole quote, or the paragraph
+        name = body[tag + 1:body.index(">", tag)].split()[0]
+        body = (body[:tag] + f'<aside class="rw-note">{item["note"]}</aside>'
+                + f'<{name} class="rw"' + body[tag + 1 + len(name):])
+    first = body.find("<p")
+    return body[:first] + f'<aside class="rw-note rw-top">{notes["_top"]}</aside>' + body[first:]
 
 
 notes_file = REPO / "_preview" / "notes" / (Path(POST).stem + ".json")
@@ -57,7 +57,7 @@ if annotated:  # only the post itself, not the site menu and footer
 
 banner = (
     '<p class="draft-banner">Draft preview, not published yet. '
-    + ("Yellow: rewrite in your own words. Green: real data, keep." if annotated else "Numbers and quotes may still change.")
+    + ("Yellow: the 3 paragraphs to rewrite in your own words, plus Alexey's quote." if annotated else "Numbers and quotes may still change.")
     + "</p>"
 )
 page = f"""<title>{title}</title>
