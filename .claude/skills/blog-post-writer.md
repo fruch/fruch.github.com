@@ -75,7 +75,7 @@ Before ANY phase, read `.claude/skills/blog-style-guide.md` using the Read tool.
 
 3. **Build the outline** with:
    - **Title options** — suggest 3 title variations (punny, descriptive, provocative)
-   - **Hook / opening** — 2-3 sentence opening that sets the scene (per the blog's conversational style)
+   - **Hook / opening** — what the opening should set up, as a note for the user to write from (not a drafted opening)
    - **Section breakdown** — each `##` section with:
      - 1-2 sentence summary of what goes there
      - `[CODE]` placeholders where code snippets should go
@@ -118,11 +118,12 @@ Before ANY phase, read `.claude/skills/blog-style-guide.md` using the Read tool.
    a. **Show the user the section plan** (from the outline) and ask:
       > "Ready to write the [section name] section? Here's what we planned: [summary]. Want to adjust anything before we start?"
 
-   b. **Collaborative drafting:**
+   b. **Collaborative drafting (the user writes the prose):**
       - Ask the user for their raw thoughts / key points for this section
-      - Draft the section in the blog's voice (casual, first-person, with code)
-      - Present the draft and ask for feedback
-      - Iterate until the user is happy
+      - Turn them into a short fact list for the section: claims, numbers, links, the code it needs. Bullets only, no finished sentences.
+      - The user writes the paragraphs. Never write prose meant for the published post, and don't offer "a polished version" of theirs. Posts here must be human-written (see "Sounding Like Me" in the style guide).
+      - Review what they wrote: wrong facts, missing links, unclear spots, and the AI tells from the style guide. Quote the exact phrase and say why, and let the user reword it.
+      - Leave their typos and quirks alone unless they ask for a typo pass, and then fix spelling only.
 
    c. **Code blocks:** When a `[CODE]` placeholder is reached:
       - Ask the user to paste or describe the code
@@ -147,6 +148,9 @@ Before ANY phase, read `.claude/skills/blog-style-guide.md` using the Read tool.
    - [ ] No walls of text without breaks
    - [ ] Opening hooks the reader in 2-3 sentences
    - [ ] Closing has personality
+   - [ ] Every paragraph was written by the user, with no AI-drafted prose left in
+   - [ ] `python3 _tools/voice_check.py` shows no tells, and the "off" metrics are explained or fixed
+   - [ ] GPTZero / Pangram run on the final text (see "Checking a Draft" in the style guide)
 
 ---
 
