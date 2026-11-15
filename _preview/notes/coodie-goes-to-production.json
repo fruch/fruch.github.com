@@ -1,17 +1,21 @@
 {
-  "_top": "Next to rewrite: the 3 yellow paragraphs, in your own words, plus Alexey's quote (waiting for him). Each note quotes the exact phrases that read as AI, per GPTZero and the humanizer / stop-slop checklists, and lists the facts to keep. Your opening, perf and closing paragraphs are already in. A test showed the skills can't fix these: their rewrites came out shorter and more even than your style, so these need your words.",
+  "_top": "Round 3: your round 2 rewrites are in, and voice_check no longer flags them. Next are the 3 yellow paragraphs, plus one paragraph to just delete, plus Alexey's quote (waiting for him). Each note quotes the phrases that read as AI and lists the facts to keep.",
   "_focus": [
     {
-      "match": "A blocking mapper inside a FastAPI app",
-      "note": "1 of 3, the async intro. Tells: one 33-word sentence standing alone as a paragraph, with a tidy 'either X or Y, and in both cases...' setup that ends on a saying ('paying for async without getting much back'). GPTZero and desklib both ranked this among the most AI-like. Keep: sync queries either block the event loop or go to a thread pool. Say it the way you'd tell Alexey why sync cqlengine hurt once Argus was on FastAPI."
+      "match": "it holds the test results ScyllaDB QA looks at",
+      "note": "Delete, don't rewrite: your new opening already says coodie got a day job, so this repeats it. It also ends on a punchline closer ('No pressure.'). If you want to keep one fact, it's that QA looks at Argus before every release, and the Argus section says that too."
     },
     {
-      "match": "Since then the benchmarks run in CI on every PR",
-      "note": "2 of 3, the CI benchmarks paragraph. Tells: 'Except CI runners are noisy, and noise can hide a real regression (or invent a fake one)' (a balanced pair, ranked top 2 by three local models), the tidy image 'a regression looks like a step in a chart', and the colon reveal 'It's the same trick ScyllaDB uses on itself:'. Keep: CI on every PR with scylla + acsylla, a comment on slower PRs, the dashboard, instruction counting (#323), and the perf-simple-query / perf-cql-raw / SCT instructions_per_op links."
+      "match": "running queries side by side only pays off",
+      "note": "1 of 3, the 'mapper overhead' paragraph. Tells: the staged opener 'Of course,', the tidy saying 'gather just gives you the slow calls in parallel', and an even three-sentence build. Keep: parallel queries only help if each query is cheap, and your previous post measured coodie's overhead against raw CQL and cqlengine and found it small (link [post2])."
     },
     {
-      "match": "gives you <code",
-      "note": "3 of 3, the schema-migrations opener and the paragraph under it. Tells: 'gives you sync_table() and wishes you luck. coodie has a real schema toolkit on top of it.' (a quotable line plus an X-vs-Y contrast; GPTZero's top AI sentences), and 'And for changes sync_table() shouldn't guess at, there are...' Keep: dry_run returns the CQL without running it, Argus used it to check names against the live cluster (packageversion_v2), an empty result meant no data migration, drift warnings, versioned migration files plus the CLI."
+      "match": "made the gradual migration possible",
+      "note": "2 of 3, the end of the drivers section. Tells: the punchline closer 'One file, not 47 models.', the 'so thanks, Argus' aside, and the semicolon. Keep: the shared session let services move one by one, it found the execution-profiles bug (#329), and db.py is 'the seam for the future acsylla driver swap' (a quote from the PR, keep it as is)."
+    },
+    {
+      "match": "less than I expected. The migration turned up",
+      "note": "3 of 3, 'What production found'. Tells: the staged opener 'Honestly,' and the balanced 'a production user and a careful code review catch different kinds of bugs'. Keep: exactly one coodie issue (#271), everything else ran as released, then a full architecture review whose findings are fixed in 1.7.x."
     },
     {
       "match": "Honestly, I expected the migration",

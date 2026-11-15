@@ -34,7 +34,7 @@ When [Alexey Kartashov][k0machi], who maintains Argus, started moving the backen
 
 <img src="{{ site.baseurl }}/assets/img/coodie-async.jpg" width="60%" style="float: none; display: block; margin: 0 auto 1.5em;" alt="The coodie mascot juggling five glowing SELECT bubbles at once, while a dusty cqlengine filing cabinet hands out one paper at a time to a bored queue under a clock" />
 
-A blocking mapper inside a FastAPI app means each query either stalls the event loop or gets shipped off to a thread pool, and in both cases you're paying for async without getting much back.
+using blocking code withing FastAPI is or blocking the app main event loop, or throwing it into a thread pool, both have their prices and limitation
 
 coodie has two APIs over the same models, `coodie.sync` for blocking code and `coodie.aio` for asyncio. The field annotations and query builder are shared, only the `Document` base class is different, and that's what let Argus do it in two steps. First [argus#1058][pr1058] moved every model to the sync API, one commit per service. Then [argus#1106][pr1106] flipped the models to `coodie.aio` and turned every route, auth dependency and service method that talks to ScyllaDB into a coroutine.
 
@@ -70,7 +70,7 @@ The `coodie.aio` switch is easier to see per endpoint, on the ones where the `ga
 
 Of course, running queries side by side only pays off if each one is cheap. If the mapper puts a heavy tax on every call, `gather` just gives you the slow calls in parallel. My [previous post][post2] measured that tax against hand-written CQL and cqlengine, and it came out small.
 
-Since then the benchmarks run in CI on every PR, against both the scylla and acsylla drivers. If a PR makes coodie slower it gets a comment, and every run lands on a [benchmark history dashboard][bench], so a regression looks like a step in a chart. Except CI runners are noisy, and noise can hide a real regression (or invent a fake one), so next I'm [counting CPU instructions][pr323] for the in-memory benchmarks, which the runner hardware can't mess with. It's the same trick ScyllaDB uses on itself: [`perf-simple-query` and `perf-cql-raw`][scylla-perf] report instructions per operation, and the weekly `perf-simple-query` runs in SCT [track `instructions_per_op` in Argus][sct-insns] as a regression metric.
+Ci is running both scylla and acsylla drivers, and if slowdown compare to older runs (on master) is noted, use gets a comment about it. ontop of it all the runs are saved and one can see a [graph of the trend][bench] of each metric. since CI runner are out of our control, and we can't blindly trust the results from them, we also introduced a way to [count the price of each operation in CPU instructions][pr323]. it's a similar trick to how [`perf-simple-query`][scylla-perf] within ScyllaDB works, and being tracked for the [`instructions per op`][sct-insns] per ops metric.
 
 Performance  work is a never-ending story, hence I've put lots of focus to having those automated on the PR level, and tracked and outperform cqlengine that didn't had this kind of attention for years (maybe ever)
 
@@ -166,7 +166,7 @@ The types also made a cleanup worth the effort. In [argus#1066][pr1066], key col
 
 ## Bonus: schema migrations
 
-cqlengine gives you `sync_table()` and wishes you luck. coodie has a real schema toolkit on top of it.
+cqlengine only gave you `sync_table()` which has lots of limitations, coodie adopted a whole set of migration commands, that can help create the migration steps/code needed, same as in other well known ORMs or people know from a whole bunch of SQL engines
 
 `sync_table(dry_run=True)` returns the CQL it would run, without running it. Argus used that to check every model against the live cluster, with table, type and index names pinned to what cqlengine had created (legacy names like `packageversion_v2` included), and an empty result meant no data migration. coodie also warns you about schema drift, when the database has columns the model doesn't know about. And for changes `sync_table()` shouldn't guess at, there are versioned migration files and a CLI to generate, apply, preview and roll them back:
 
