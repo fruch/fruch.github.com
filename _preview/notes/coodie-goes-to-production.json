@@ -1,17 +1,17 @@
 {
-  "_top": "Round 2: the next 3 paragraphs to put in your own words (yellow), plus Alexey's quote, still waiting for him. Your opening, perf and closing paragraphs are already in.",
+  "_top": "Next to rewrite: the 3 yellow paragraphs, in your own words, plus Alexey's quote (waiting for him). Each note quotes the exact phrases that read as AI, per GPTZero and the humanizer / stop-slop checklists, and lists the facts to keep. Your opening, perf and closing paragraphs are already in. A test showed the skills can't fix these: their rewrites came out shorter and more even than your style, so these need your words.",
   "_focus": [
     {
       "match": "A blocking mapper inside a FastAPI app",
-      "note": "1 of 3: the async intro. GPTZero's second most-flagged sentence was in its first version ('Either way, you lose most of what async was supposed to give you'), and desklib ranked it second. One or two sentences on why sync cqlengine hurt Argus once it was on FastAPI."
+      "note": "1 of 3, the async intro. Tells: one 33-word sentence standing alone as a paragraph, with a tidy 'either X or Y, and in both cases...' setup that ends on a saying ('paying for async without getting much back'). GPTZero and desklib both ranked this among the most AI-like. Keep: sync queries either block the event loop or go to a thread pool. Say it the way you'd tell Alexey why sync cqlengine hurt once Argus was on FastAPI."
     },
     {
       "match": "Since then the benchmarks run in CI on every PR",
-      "note": "2 of 3: the CI benchmarks paragraph (your comment's spot; the Scylla perf-simple-query / perf-cql-raw links are now in it). Its 'CI runners are noisy' part was a top-2 AI score for three of the local models. Keep the links and facts, say it your way."
+      "note": "2 of 3, the CI benchmarks paragraph. Tells: 'Except CI runners are noisy, and noise can hide a real regression (or invent a fake one)' (a balanced pair, ranked top 2 by three local models), the tidy image 'a regression looks like a step in a chart', and the colon reveal 'It's the same trick ScyllaDB uses on itself:'. Keep: CI on every PR with scylla + acsylla, a comment on slower PRs, the dashboard, instruction counting (#323), and the perf-simple-query / perf-cql-raw / SCT instructions_per_op links."
     },
     {
       "match": "gives you <code",
-      "note": "3 of 3: the schema-migrations opener and the paragraph after it. On the rewritten draft, GPTZero's top AI sentences were exactly these ('coodie has a real schema toolkit on top of it', 'And for changes sync_table() shouldn't guess at...'). Facts: dry_run returns the CQL, Argus used it to verify names, drift warnings, versioned migration files + CLI."
+      "note": "3 of 3, the schema-migrations opener and the paragraph under it. Tells: 'gives you sync_table() and wishes you luck. coodie has a real schema toolkit on top of it.' (a quotable line plus an X-vs-Y contrast; GPTZero's top AI sentences), and 'And for changes sync_table() shouldn't guess at, there are...' Keep: dry_run returns the CQL without running it, Argus used it to check names against the live cluster (packageversion_v2), an empty result meant no data migration, drift warnings, versioned migration files plus the CLI."
     },
     {
       "match": "Honestly, I expected the migration",
