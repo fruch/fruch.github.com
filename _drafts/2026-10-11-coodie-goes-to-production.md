@@ -10,10 +10,8 @@ status: draft
 
 <img src="{{ site.baseurl }}/assets/img/coodie-day-job.jpg" width="75%" style="float: none; display: block; margin: 0 auto 1.5em;" alt="The coodie mascot, a knitted beanie wearing an ARGUS badge and holding a coffee, standing at a desk with a dashboard of green checkmarks" />
 
-Up until now, [coodie] was nice pet project, my first greenfield AI aided project with [fun origin story][post1]. now it's getting "real" day job, as we about to announce it replacing cqlengine cause it proven it self in the first field project.
-lets jump right into explaining the how and why:
-
-Now it has a day job, and not an easy one: it holds the test results ScyllaDB QA looks at before every release. No pressure.
+Up until now, [coodie] was a nice pet project, my first greenfield AI-aided project, with a [fun origin story][post1]. Now it's getting a "real" day job, as we're about to announce it as the replacement for cqlengine, because it proved itself in its first field project.
+Let's jump right into explaining the how and why:
 
 ## Argus, and five years of cqlengine
 
@@ -34,7 +32,7 @@ When [Alexey Kartashov][k0machi], who maintains Argus, started moving the backen
 
 <img src="{{ site.baseurl }}/assets/img/coodie-async.jpg" width="60%" style="float: none; display: block; margin: 0 auto 1.5em;" alt="The coodie mascot juggling five glowing SELECT bubbles at once, while a dusty cqlengine filing cabinet hands out one paper at a time to a bored queue under a clock" />
 
-using blocking code withing FastAPI is or blocking the app main event loop, or throwing it into a thread pool, both have their prices and limitation
+Using blocking code within FastAPI means either blocking the app's main event loop, or throwing it into a thread pool, both have their prices and limitations.
 
 coodie has two APIs over the same models, `coodie.sync` for blocking code and `coodie.aio` for asyncio. The field annotations and query builder are shared, only the `Document` base class is different, and that's what let Argus do it in two steps. First [argus#1058][pr1058] moved every model to the sync API, one commit per service. Then [argus#1106][pr1106] flipped the models to `coodie.aio` and turned every route, auth dependency and service method that talks to ScyllaDB into a coroutine.
 
@@ -70,9 +68,9 @@ The `coodie.aio` switch is easier to see per endpoint, on the ones where the `ga
 
 Of course, running queries side by side only pays off if each one is cheap. If the mapper puts a heavy tax on every call, `gather` just gives you the slow calls in parallel. My [previous post][post2] measured that tax against hand-written CQL and cqlengine, and it came out small.
 
-Ci is running both scylla and acsylla drivers, and if slowdown compare to older runs (on master) is noted, use gets a comment about it. ontop of it all the runs are saved and one can see a [graph of the trend][bench] of each metric. since CI runner are out of our control, and we can't blindly trust the results from them, we also introduced a way to [count the price of each operation in CPU instructions][pr323]. it's a similar trick to how [`perf-simple-query`][scylla-perf] within ScyllaDB works, and being tracked for the [`instructions per op`][sct-insns] per ops metric.
+CI is running both scylla and acsylla drivers, and if a slowdown compared to older runs (on master) is noted, the PR gets a comment about it. On top of it, all the runs are saved and one can see a [graph of the trend][bench] of each metric. Since CI runners are out of our control, and we can't blindly trust the results from them, we also introduced a way to [count the price of each operation in CPU instructions][pr323]. It's a similar trick to how [`perf-simple-query`][scylla-perf] within ScyllaDB works, and is tracked as the [`instructions per op`][sct-insns] metric.
 
-Performance  work is a never-ending story, hence I've put lots of focus to having those automated on the PR level, and tracked and outperform cqlengine that didn't had this kind of attention for years (maybe ever)
+Performance work is a never-ending story, hence I've put lots of focus on having those automated on the PR level, and tracked, to outperform cqlengine, which didn't have this kind of attention for years (maybe ever).
 
 The same PR also got rid of most of the hand-written CQL. The prepared statement from before becomes a query-builder call with a column projection:
 
@@ -204,9 +202,9 @@ Argus now runs on coodie, fully async, on the same schema it had under cqlengine
 
 coodie lives in the [ScyllaDB GitHub organization][coodie], next to the drivers it builds on. cqlengine, meanwhile, is in maintenance mode: bug fixes, no new features. Starting with the next ScyllaDB Python driver release, importing cqlengine raises a deprecation warning that points to coodie (I sent that one in myself, [python-driver#1127][pd1127]).
 
-If you’re using Scylla from python and like type annotation (i.e. pydantic and package using the same approach), you might want to give coodie a try.
-If you are using cqlengine you should definitely pick it up, the [migration guide][migration] and it match [skill][migration-skill] are good places to start understanding how to get it running.
-[issues] and [pull requests][pulls] are highly welcomed
+If you’re using Scylla from Python and like type annotations (i.e. pydantic and packages using the same approach), you might want to give coodie a try.
+If you are using cqlengine you should definitely pick it up, the [migration guide][migration] and its matching [skill][migration-skill] are good places to start understanding how to get it running.
+[issues] and [pull requests][pulls] are highly welcome.
 
 [coodie]: https://github.com/scylladb/coodie
 [Argus]: https://github.com/scylladb/argus

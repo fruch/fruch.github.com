@@ -1,10 +1,6 @@
 {
-  "_top": "Round 3: your round 2 rewrites are in, and voice_check no longer flags them. Next are the 3 yellow paragraphs, plus one paragraph to just delete, plus Alexey's quote (waiting for him). Each note quotes the phrases that read as AI and lists the facts to keep.",
+  "_top": "Round 3: your round 2 rewrites are in, and voice_check no longer flags them. Typos in your paragraphs are fixed and the repeated 'day job' paragraph is gone. Next are the 3 yellow paragraphs, plus Alexey's quote (waiting for him). Each note quotes the phrases that read as AI and lists the facts to keep.",
   "_focus": [
-    {
-      "match": "it holds the test results ScyllaDB QA looks at",
-      "note": "Delete, don't rewrite: your new opening already says coodie got a day job, so this repeats it. It also ends on a punchline closer ('No pressure.'). If you want to keep one fact, it's that QA looks at Argus before every release, and the Argus section says that too."
-    },
     {
       "match": "running queries side by side only pays off",
       "note": "1 of 3, the 'mapper overhead' paragraph. Tells: the staged opener 'Of course,', the tidy saying 'gather just gives you the slow calls in parallel', and an even three-sentence build. Keep: parallel queries only help if each query is cheap, and your previous post measured coodie's overhead against raw CQL and cqlengine and found it small (link [post2])."
