@@ -1,0 +1,21 @@
+{
+  "_top": "Round 3: your round 2 rewrites are in, and voice_check no longer flags them. Typos in your paragraphs are fixed and the repeated 'day job' paragraph is gone. Next are the 3 yellow paragraphs, plus Alexey's quote (waiting for him). Each note quotes the phrases that read as AI and lists the facts to keep.",
+  "_focus": [
+    {
+      "match": "running queries side by side only pays off",
+      "note": "1 of 3, the 'mapper overhead' paragraph. Tells: the staged opener 'Of course,', the tidy saying 'gather just gives you the slow calls in parallel', and an even three-sentence build. Keep: parallel queries only help if each query is cheap, and your previous post measured coodie's overhead against raw CQL and cqlengine and found it small (link [post2])."
+    },
+    {
+      "match": "made the gradual migration possible",
+      "note": "2 of 3, the end of the drivers section. Tells: the punchline closer 'One file, not 47 models.', the 'so thanks, Argus' aside, and the semicolon. Keep: the shared session let services move one by one, it found the execution-profiles bug (#329), and db.py is 'the seam for the future acsylla driver swap' (a quote from the PR, keep it as is)."
+    },
+    {
+      "match": "less than I expected. The migration turned up",
+      "note": "3 of 3, 'What production found'. Tells: the staged opener 'Honestly,' and the balanced 'a production user and a careful code review catch different kinds of bugs'. Keep: exactly one coodie issue (#271), everything else ran as released, then a full architecture review whose findings are fixed in 1.7.x."
+    },
+    {
+      "match": "Honestly, I expected the migration",
+      "note": "Alexey's quote: still the placeholder in his style. Waiting for his own words."
+    }
+  ]
+}
